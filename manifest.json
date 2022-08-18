@@ -1,0 +1,47 @@
+{
+    "name": "Amazon Keword",
+    "description": "Extension to identify products based on certain keywords.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "host_permissions": [
+        "*://*.amazon.com/*",
+        "*://*.amazon.ca/*",
+        "*://*.amazon.in/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.com.au/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.fr/*",
+        "*://*.amazon.it/*",
+        "*://*.amazon.es/*"
+    ],
+    "icons": {
+        "128": "icons/icon.png"
+     },
+    "content_scripts": [
+        {
+            "js": [
+                "js/jquery/jquery.min.js",
+                "js/async.min.js",
+                "js/jquery.query-object.js",
+                "src/inject/inject.js"
+            ],
+            "matches": [
+                "*://*.amazon.com/*",
+                "*://*.amazon.co.uk/*",
+                "*://*.amazon.com.au/*",
+                "*://*.amazon.ca/*",
+                "*://*.amazon.in/*",
+                "*://*.amazon.de/*",
+                "*://*.amazon.fr/*",
+                "*://*.amazon.it/*",
+                "*://*.amazon.es/*"            
+            ]
+        }
+    ],
+    "background": {
+        "service_worker": "src/bg/background.js"
+    },
+    "action": {
+        "default_popup": "src/html/popup.html"
+    }
+}
