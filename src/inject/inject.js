@@ -5,7 +5,45 @@ var myoffset=0;
 var mypage=0;
 var keyCounter=0;
 
-var keyWords = ["heavy","samsung"];
+var keyWords = [
+    "milk",
+    "egg",
+    "fish",
+    "shellfish",
+    "peanut",
+    "tree nut",
+    "wheat",
+    "soy",
+    "sesame"
+];
+
+function scanCurrentProductPageForKeywords() {
+    if(!window.location.pathname.match(/\/dp\//)) {
+        return false;
+    }
+
+    var fullText = $("body").text().toLowerCase();
+    for (var i = 0; i < keyWords.length; i++) {
+        if (fullText.includes(keyWords[i])) {
+            keyCounter = 1;
+            chrome.runtime.sendMessage(
+                {
+                    event: "updateBadgeCounter",
+                    data: keyCounter + ""
+                }
+            );
+            return true;
+        }
+    }
+
+    chrome.runtime.sendMessage(
+        {
+            event: "updateBadgeCounter",
+            data: "0"
+        }
+    );
+    return true;
+}
 
 function setPageLink(link, page) {
 	if(link.match(/page=\d+/)) {
@@ -61,6 +99,9 @@ function highlightKeywordItems(asin, item){
 }
 
 function parsePages() {
+    if(scanCurrentProductPageForKeywords()){
+        return true;
+    }
     isrunning=true;
     var seller_id = false;
     var isInCategoryPage = false;

@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="button.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 12px;
+        width: 320px;
+        color: #111;
+      }
+      h3 {
+        margin: 0 0 10px;
+        font-size: 16px;
+      }
+      p {
+        margin: 0 0 10px;
+        line-height: 1.4;
+      }
+      .keywords {
+        display: block;
+        background: #f6f7f9;
+        border: 1px solid #d9dde3;
+        border-radius: 6px;
+        padding: 8px;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+    </style>
   </head>
   <body>
-    <div id="buttonDiv">
-    </div>
-    <div>
-      <p>Choose a different background color!</p>
-    </div>
+    <h3>Amazon Keyword Detector</h3>
+    <p>Open an Amazon results/product page and wait a few seconds while scanning runs.</p>
+    <p>Matched products increase the badge count on the extension icon.</p>
+    <p><strong>Current counter:</strong> <span id="counter">Loading...</span></p>
+    <span class="keywords">
+      Active allergen keywords: milk, egg, fish, shellfish, peanut, tree nut, wheat, soy, sesame
+    </span>
+    <script src="popup.js"></script>
   </body>
 </html>
